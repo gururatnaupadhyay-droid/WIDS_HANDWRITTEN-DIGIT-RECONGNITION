@@ -18,14 +18,28 @@ One-Hot Encoding: The labels (0–9) are converted into categorical vectors. Ins
 
 The model follows a classic CNN architecture, which is specifically designed to mimic how the human visual cortex processes information.
 
-| Layer Type | Purpose | Key Parameters |
-| **Conv2D** | Feature Extraction | 32 filters, 3x3 kernel |
-| **MaxPooling** | Data Compression | 2x2 pool size |
-| **Conv2D** | Advanced Feature Extraction | 64 filters, 3x3 kernel |
-| **Flatten** | Reshaping for Output | Converts 2D to 1D |
-| **Dense** | Decision Making | 128 neurons, ReLU |
-| **Dropout** | Overfitting Prevention | 50% neuron deactivation |
-| **Softmax** | Final Classification | 10 output classes |
+The Visual Processing Stage (Convolutional Layers)
+This stage mimics the human eye by scanning the image for patterns.
+
+First Convolutional Layer (Conv2D): This is the entry point. It uses 32 different filters to scan the 28x28 pixel image. It looks for basic features like edges, vertical lines, and horizontal strokes.
+
+First Max Pooling Layer: To make the model efficient, this layer shrinks the image dimensions. By looking at 2x2 pixel squares and keeping only the brightest (most important) pixel, it reduces the amount of data the computer has to process without losing the key features.
+
+Second Convolutional Layer (Conv2D): Now that the basics are found, this layer uses 64 filters to look for more complex "features of features"—such as the specific curves that distinguish a "6" from an "8."
+
+Second Max Pooling Layer: Another round of compression occurs here, ensuring the model remains fast and focuses only on the most dominant visual signals.
+
+The Translation Stage (Flattening)
+Flatten Layer: At this point, the data is still in a 2D "map" format. The Flatten layer unrolls this 2D grid into a single, long 1D list of numbers. Think of it like taking a folded map and stretching it out into one long line so the next layer can read it from start to finish.
+
+The Decision-Making Stage (Dense Layers)
+This is the "brain" of the model where the actual classification happens.
+
+Hidden Dense Layer: This layer has 128 neurons that weigh the importance of all the features found earlier. It uses the ReLU activation function, which acts as a gate—it allows important signals to pass through while blocking irrelevant ones (turning negative values to zero).
+
+Dropout Layer: This is a crucial "safety" step. It randomly shuts off 50% of the neurons during each training step. This forces the model to not rely too heavily on any single pixel or feature, making it much better at recognizing handwritten digits it has never seen before.
+
+Output Dense Layer: The final layer has 10 neurons, representing digits 0 through 9. It uses the Softmax function to turn the model's internal logic into a probability (e.g., "I am 98% sure this is a 4"). 
 
 The inclusion of **Dropout (0.5)** is important. It randomly "turns off" half the neurons during training, forcing the model to find multiple paths to the right answer rather than relying on a few "heavy-lifter" neurons.
 
