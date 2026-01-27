@@ -3,7 +3,7 @@ Dataset for the MNIST Pixel values is from kaggle: https://www.kaggle.com/datase
 The dataset has 60000 training data and 10000 testing data
 
 The main Project is implemented via Tensorflow which is a library that is used to make Convolutional Neural Network learning much more user friendly and straightforward.
-
+---
 
 1. Data Preparation: Setting the Stage
 
@@ -13,7 +13,7 @@ Normalization: Pixel values are scaled from their original range (0–255) down 
 Reshaping: The flat 784-pixel rows are reshaped into 28x28x1 tensors. This 3D structure is vital because it preserves the spatial relationships between pixels—something a flat list of numbers can't do.
 One-Hot Encoding: The labels (0–9) are converted into categorical vectors. Instead of the digit "3," the model sees `[0, 0, 0, 1, 0, 0, 0, 0, 0, 0]`.
 
-
+---
 2. The Architecture: Designing the Brain
 
 The model follows a classic CNN architecture, which is specifically designed to mimic how the human visual cortex processes information.
